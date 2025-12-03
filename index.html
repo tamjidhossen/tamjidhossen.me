@@ -118,6 +118,7 @@
         .about {
             background-color: var(--cream);
             padding: 4rem 2rem;
+            margin-bottom: 6rem;
         }
 
         .about-content {
@@ -555,8 +556,45 @@
             box-shadow: 3px 3px 0 var(--burnt-orange);
         }
 
+        /* Mobile Caution Banner */
+        .mobile-caution {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--burnt-orange);
+            color: var(--cream);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            z-index: 9999;
+            border-bottom: 6px solid var(--coffee-dark);
+            box-shadow: 0 8px 0 var(--coffee-dark);
+            font-weight: 900;
+            line-height: 1.8;
+        }
+
+        .mobile-caution p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .mobile-caution-spacer {
+            display: none;
+            height: 0;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
+            .mobile-caution {
+                display: block;
+            }
+
+            .mobile-caution-spacer {
+                display: block;
+                height: 130px;
+            }
+
             h1 {
                 font-size: 2.5rem;
                 text-shadow: 4px 4px 0 var(--burnt-orange);
@@ -681,6 +719,12 @@
     </style>
 </head>
 <body>
+    <!-- Mobile Caution Banner -->
+    <div class="mobile-caution">
+        <p>⚠️ This website was meant to be viewed on a desktop or laptop. It is not responsive on mobile—because the developer is lazy, and as an agent, I was doing a spectacularly shitty job at making it responsive.<br><br>— GitHub Copilot</p>
+    </div>
+    <div class="mobile-caution-spacer"></div>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
