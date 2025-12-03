@@ -167,6 +167,62 @@
             font-weight: 700;
         }
 
+        /* Development Experience Section */
+        .dev-experience {
+            background-color: var(--cream);
+            padding: 4rem 2rem;
+        }
+
+        .dev-experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .dev-card {
+            background: var(--coffee-dark);
+            color: var(--cream);
+            padding: 2rem;
+            border: 6px solid var(--burnt-orange);
+            box-shadow: 8px 8px 0 var(--burnt-orange);
+            transition: transform 0.1s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dev-card:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0 var(--burnt-orange);
+        }
+
+        .dev-card h3 {
+            color: var(--mustard);
+            margin-bottom: 1rem;
+        }
+
+        .dev-card p {
+            color: var(--cream);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            flex-grow: 1;
+        }
+
+        .dev-card .project-links {
+            margin-top: auto;
+        }
+
+        .dev-card .project-link {
+            background: var(--burnt-orange);
+            border-color: var(--cream);
+            color: var(--cream);
+        }
+
+        .dev-card .project-link:hover {
+            box-shadow: 2px 2px 0 var(--cream);
+        }
+
         /* Projects Section */
         .projects {
             background-color: var(--burnt-orange);
@@ -181,9 +237,15 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
             margin-top: 2rem;
+        }
+
+        @media (max-width: 1200px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .project-card {
@@ -193,6 +255,8 @@
             border: 6px solid var(--coffee-dark);
             box-shadow: 8px 8px 0 var(--coffee-dark);
             transition: transform 0.1s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -210,6 +274,14 @@
             margin-bottom: 1rem;
             font-size: 0.95rem;
             font-weight: 700;
+            flex-grow: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: auto;
         }
 
         .project-link {
@@ -227,6 +299,25 @@
         .project-link:hover {
             transform: translate(2px, 2px);
             box-shadow: 2px 2px 0 var(--coffee-dark);
+        }
+
+        .project-link + .project-link {
+            margin-left: 0.5rem;
+        }
+
+        .cp-profiles p,
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 900;
+        }
+
+        .cp-profiles p {
+            color: var(--cream);
+        }
+
+        .contact p {
+            color: var(--coffee-dark);
         }
 
         /* Contact Section */
@@ -278,23 +369,313 @@
             font-weight: 900;
         }
 
+        /* Education Section */
+        .education {
+            background-color: var(--cream);
+            padding: 4rem 2rem;
+        }
+
+        .education-card {
+            background: var(--coffee-dark);
+            color: var(--cream);
+            padding: 2rem;
+            border: 6px solid var(--burnt-orange);
+            box-shadow: 8px 8px 0 var(--burnt-orange);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-card h3 {
+            color: var(--mustard);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .institution {
+            color: var(--cream);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .education-card .duration {
+            color: var(--mustard);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        /* Contests Section */
+        .contests {
+            background-color: var(--mustard);
+            padding: 4rem 2rem;
+        }
+
+        .contests h2 {
+            color: var(--coffee-dark);
+        }
+
+        .contests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contest-card {
+            background: var(--cream);
+            color: var(--coffee-dark);
+            padding: 1.5rem;
+            border: 5px solid var(--coffee-dark);
+            box-shadow: 6px 6px 0 var(--coffee-dark);
+            transition: transform 0.1s ease;
+            display: flex;
+            flex-direction: column;
+            min-height: 140px;
+        }
+
+        .contest-card:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--coffee-dark);
+        }
+
+        .contest-card h3 {
+            color: var(--burnt-orange);
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .contest-card .achievement {
+            color: var(--coffee-dark);
+            font-weight: 900;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .contest-card .date {
+            color: var(--coffee-medium);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-top: auto;
+        }
+
+        /* Experience Section */
+        .experience {
+            background-color: var(--cream);
+            padding: 4rem 2rem;
+        }
+
+        .experience-card {
+            background: var(--burnt-orange);
+            color: var(--cream);
+            padding: 2rem;
+            border: 6px solid var(--coffee-dark);
+            box-shadow: 8px 8px 0 var(--coffee-dark);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .experience-card h3 {
+            color: var(--cream);
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-card .role {
+            color: var(--mustard);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .experience-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .experience-card li {
+            color: var(--cream);
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .experience-card li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--mustard);
+            font-weight: 900;
+        }
+
+        .experience-card .highlight {
+            color: var(--mustard);
+            font-weight: 900;
+        }
+
+        /* CP Profiles Section */
+        .cp-profiles {
+            background-color: var(--coffee-dark);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cp-profiles h2 {
+            color: var(--cream);
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .profiles-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-link {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: var(--mustard);
+            color: var(--coffee-dark);
+            text-decoration: none;
+            font-weight: 900;
+            border: 4px solid var(--burnt-orange);
+            box-shadow: 6px 6px 0 var(--burnt-orange);
+            transition: transform 0.1s ease;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
+
+        .profile-link:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--burnt-orange);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
+                text-shadow: 4px 4px 0 var(--burnt-orange);
             }
 
             h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+                border-left-width: 8px;
+                padding-left: 1rem;
+            }
+
+            .hero {
+                padding: 1.5rem;
             }
 
             .hero p {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+            }
+
+            .tagline {
+                font-size: 0.9rem;
+                padding: 0.8rem 1.5rem;
+                box-shadow: 4px 4px 0 var(--burnt-orange);
+            }
+
+            .container {
+                padding: 3rem 1.5rem;
+            }
+
+            section {
+                margin-bottom: 4rem;
+            }
+
+            .about-content p {
+                padding: 1.2rem;
+                font-size: 1rem;
+                box-shadow: 4px 4px 0 var(--coffee-dark);
             }
 
             .skills-grid,
-            .projects-grid {
+            .projects-grid,
+            .contests-grid,
+            .dev-experience-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .skill-card,
+            .project-card,
+            .contest-card {
+                padding: 1.5rem;
+                border-width: 4px;
+                box-shadow: 4px 4px 0 var(--burnt-orange);
+            }
+
+            .skill-card:hover,
+            .project-card:hover,
+            .contest-card:hover {
+                transform: translate(2px, 2px);
+                box-shadow: 2px 2px 0 var(--burnt-orange);
+            }
+
+            .education-card,
+            .experience-card {
+                padding: 1.5rem;
+                border-width: 4px;
+                box-shadow: 4px 4px 0 var(--burnt-orange);
+            }
+
+            .social-link,
+            .profile-link {
+                padding: 0.9rem 1.8rem;
+                font-size: 1rem;
+                box-shadow: 4px 4px 0 var(--coffee-dark);
+            }
+
+            .social-link:hover,
+            .profile-link:hover {
+                transform: translate(2px, 2px);
+                box-shadow: 2px 2px 0 var(--coffee-dark);
+            }
+
+            .project-link {
+                font-size: 0.9rem;
+                padding: 0.6rem 1rem;
+                box-shadow: 3px 3px 0 var(--coffee-dark);
+            }
+
+            .project-link:hover {
+                transform: translate(1px, 1px);
+                box-shadow: 2px 2px 0 var(--coffee-dark);
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .tagline {
+                font-size: 0.8rem;
+                letter-spacing: 0.1em;
+            }
+
+            .profiles-links,
+            .social-links {
+                gap: 1rem;
             }
         }
     </style>
@@ -314,8 +695,7 @@
         <div class="container">
             <h2>About Me</h2>
             <div class="about-content">
-                <p>Hi there! I'm Tamjid Hossen, a passionate Computer Science & Engineering student with a deep interest in exploring the frontiers of technology. My journey in tech is driven by curiosity and a desire to create meaningful solutions.</p>
-                <p>I'm constantly learning and growing, diving into diverse areas from algorithmic problem-solving to cutting-edge artificial intelligence and web technologies.</p>
+                <p>I write code, break things, then pretend it was a feature. I'm into Competitive Programming, Software Engineering, and casually automating life with AI and LLMs on the side.</p>
             </div>
         </div>
     </section>
@@ -329,6 +709,10 @@
                 <p>Mastering data structures and algorithms through competitive problem-solving. Building strong analytical and logical thinking skills.</p>
             </div>
             <div class="skill-card">
+                <h3>DSA</h3>
+                <p>Deep understanding of data structures and algorithms, fundamental building blocks for efficient software solutions.</p>
+            </div>
+            <div class="skill-card">
                 <h3>AI & LLMs</h3>
                 <p>Exploring Large Language Models, automation, and artificial intelligence to build intelligent systems and chatbots.</p>
             </div>
@@ -336,9 +720,54 @@
                 <h3>Web Development</h3>
                 <p>Creating dynamic and responsive web applications using modern technologies and frameworks.</p>
             </div>
-            <div class="skill-card">
-                <h3>DSA</h3>
-                <p>Deep understanding of data structures and algorithms, fundamental building blocks for efficient software solutions.</p>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-card">
+                <h3>Computer Science and Engineering</h3>
+                <p class="institution">Jatiya Kabi Kazi Nazrul Islam University, Mymensingh</p>
+                <p class="duration">February 2022 – December 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CP Profiles Section -->
+    <section class="cp-profiles">
+        <div class="container">
+            <h2>Competitive Programming</h2>
+            <p>Check out my competitive programming profiles</p>
+            <div class="profiles-links">
+                <a href="https://codeforces.com/profile/tamjid_hossen" class="profile-link" target="_blank">Codeforces</a>
+                <a href="https://leetcode.com/tamjid_hossen" class="profile-link" target="_blank">LeetCode</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Experience Section -->
+    <section class="dev-experience">
+        <div class="container">
+            <h2>Development Experience</h2>
+            <div class="dev-experience-grid">
+                <div class="dev-card">
+                    <h3>Research & Extension Center Website</h3>
+                    <p>Official website for Research and Extension Center, JKKNIU. Contractual project serving the university community with comprehensive research information and resources.</p>
+                    <div class="project-links">
+                        <a href="https://researchcenter.jkkniu.edu.bd/" class="project-link" target="_blank">Live Site →</a>
+                        <a href="https://github.com/tamjidhossen/Research-And-Extension-Center-Official-Website" class="project-link" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+                <div class="dev-card">
+                    <h3>CSE Alumni Reunion 2025 Website</h3>
+                    <p>Official website for CSE Alumni Reunion 2025 at JKKNIU. Contractual project built with modern web technologies to connect alumni and manage event information.</p>
+                    <div class="project-links">
+                        <a href="https://csealumni.jkkniu.edu.bd/" class="project-link" target="_blank">Live Site →</a>
+                        <a href="https://github.com/tamjidhossen/CSE-Alumni-Reunion-2025-Official-Website" class="project-link" target="_blank">GitHub →</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -349,35 +778,103 @@
             <h2>Featured Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
+                    <h3>JKKNIU Helpdesk Chatbot</h3>
+                    <p>Intelligent chatbot for university-related queries using Python and AI technologies.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/tamjidhossen/JKKNIU-Helpdesk-Chatbot" class="project-link" target="_blank">View Project →</a>
+                    </div>
+                </div>
+                <div class="project-card">
                     <h3>Discord Finance Bot</h3>
-                    <p>AI-powered Discord bot that automatically tracks expenses from text, images, and voice messages, logging them to Google Sheets. Built entirely on free-tier services with JWT security and intelligent parsing via Google Gemini.</p>
-                    <a href="https://github.com/tamjidhossen/Discord-Finance-Bot" class="project-link" target="_blank">View Project →</a>
+                    <p>AI-powered bot tracking expenses from text, images, and voice messages, logging to Google Sheets with JWT security.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/tamjidhossen/Discord-Finance-Bot" class="project-link" target="_blank">View Project →</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>JKKNIURecycleBin</h3>
+                    <p>Comprehensive file recovery and management system for JKKNIU with efficient data recovery solutions.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/tamjidhossen/JKKNIURecycleBin" class="project-link" target="_blank">View Project →</a>
+                    </div>
                 </div>
                 <div class="project-card">
                     <h3>Multilingual RAG System</h3>
-                    <p>A Multilingual RAG application with a knowledgebase of Bangla literature, enabling advanced information retrieval across languages.</p>
-                    <a href="https://github.com/tamjidhossen/Multilingual-RAG-System" class="project-link" target="_blank">View Project →</a>
+                    <p>Multilingual RAG application with Bangla literature knowledgebase for advanced information retrieval.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/tamjidhossen/Multilingual-RAG-System" class="project-link" target="_blank">View Project →</a>
+                    </div>
                 </div>
-                <div class="project-card">
-                    <h3>JKKNIU Helpdesk Chatbot</h3>
-                    <p>An intelligent chatbot designed to assist students with university-related queries and information using Python and AI technologies.</p>
-                    <a href="https://github.com/tamjidhossen/JKKNIU-Helpdesk-Chatbot" class="project-link" target="_blank">View Project →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contests Section -->
+    <section class="contests">
+        <div class="container">
+            <h2>Contest Achievements</h2>
+            <div class="contests-grid">
+                <div class="contest-card">
+                    <h3>ICPC Dhaka Regionals 2025</h3>
+                    <p class="achievement">Preliminary - Top 10%</p>
+                    <p class="date">November 2025</p>
                 </div>
-                <div class="project-card">
-                    <h3>Financial Policy Chatbot</h3>
-                    <p>AI-powered chatbot for financial policy inquiries, leveraging natural language processing to provide accurate information.</p>
-                    <a href="https://github.com/tamjidhossen/financial-policy-chatbot" class="project-link" target="_blank">View Project →</a>
+                <div class="contest-card">
+                    <h3>TechMind Hackathon 2025</h3>
+                    <p class="achievement">Team MamaDeployMar - Champion</p>
+                    <p class="date">September 2025</p>
                 </div>
-                <div class="project-card">
-                    <h3>CP Library</h3>
-                    <p>A comprehensive collection of competitive programming algorithms and data structures implemented in C++ for quick reference and learning.</p>
-                    <a href="https://github.com/tamjidhossen/CP-Library" class="project-link" target="_blank">View Project →</a>
+                <div class="contest-card">
+                    <h3>Mymensingh Divisional Programming Contest</h3>
+                    <p class="achievement">Team MamaDPMar - 1st Runners Up</p>
+                    <p class="date">February 2025</p>
                 </div>
-                <div class="project-card">
-                    <h3>CSE Alumni Reunion Website</h3>
-                    <p>Official website for CSE Alumni Reunion 2025 at JKKNIU, built with modern web technologies to connect alumni and manage event information.</p>
-                    <a href="https://github.com/tamjidhossen/CSE-Alumni-Reunion-2025-Official-Website" class="project-link" target="_blank">View Project →</a>
+                <div class="contest-card">
+                    <h3>UIU CSE Fest 2025</h3>
+                    <p class="achievement">LFR Contest - 5th Place</p>
+                    <p class="date">January 2025</p>
                 </div>
+                <div class="contest-card">
+                    <h3>ICPC Dhaka Regionals 2024</h3>
+                    <p class="achievement">Preliminary - Top 13%</p>
+                    <p class="date">December 2024</p>
+                </div>
+                <div class="contest-card">
+                    <h3>NASA Space Apps Challenge</h3>
+                    <p class="achievement">Team Cyborgs - Top 14%</p>
+                    <p class="date">October 2024</p>
+                </div>
+                <div class="contest-card">
+                    <h3>Technovation'25 Hackathon</h3>
+                    <p class="achievement">Team MamaDeployMar - 5th Place</p>
+                    <p class="date">September 2025</p>
+                </div>
+                <div class="contest-card">
+                    <h3>UAP Cyber Siege CTF 2025</h3>
+                    <p class="achievement">Team CP > CTF - 8th Place</p>
+                    <p class="date">May 2025</p>
+                </div>
+                <div class="contest-card">
+                    <h3>BUP CSE Tech Carnival CTF - 2025</h3>
+                    <p class="achievement">Team MamaDecryptMar - 14th Place</p>
+                    <p class="date">September 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience">
+        <div class="container">
+            <h2>Additional Experience</h2>
+            <div class="experience-card">
+                <h3>NHSPC 2025</h3>
+                <p class="role">Mentor & Problem Setter | May 2025</p>
+                <ul>
+                    <li>Selected as mentor for National High School Programming Contest - 2025</li>
+                    <li>Authored problem used by <span class="highlight">University of Rajshahi</span>, <span class="highlight">Khulna University</span>, and <span class="highlight">Patuakhali Science and Technology University</span></li>
+                    <li>Coordinated contests, quizzes, and seminars on JKKNIU premises</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -386,10 +883,10 @@
     <section class="contact">
         <div class="container">
             <h2>Let's Connect</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--coffee-dark); font-weight: 900;">Feel free to reach out if you want to collaborate or just say hi!</p>
+            <p>Feel free to reach out if you want to collaborate or just say hi!</p>
             <div class="social-links">
-                <a href="https://github.com/tamjidhossen" class="social-link" target="_blank">GitHub</a>
                 <a href="https://www.linkedin.com/in/tamjidhossen/" class="social-link" target="_blank">LinkedIn</a>
+                <a href="https://github.com/tamjidhossen" class="social-link" target="_blank">GitHub</a>
             </div>
         </div>
     </section>
