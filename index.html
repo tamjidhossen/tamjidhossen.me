@@ -29,6 +29,7 @@
             --border-color: var(--color-coffee-dark);
             --shadow-color: var(--color-coffee-dark);
             --nav-bg: var(--color-cream);
+            --nav-bg-rgba: rgba(245, 230, 211, 0.75);
             --accent: var(--color-burnt-orange);
             --accent-foreground: var(--color-cream);
             --accent-secondary: var(--color-mustard);
@@ -62,6 +63,7 @@
             --border-color: var(--color-cream);
             --shadow-color: var(--color-cream);
             --nav-bg: var(--color-coffee-dark);
+            --nav-bg-rgba: rgba(44, 24, 16, 0.75);
             --accent: #FFA726;           /* Vibrant Amber Orange (highly legible on dark backgrounds) */
             --accent-foreground: var(--color-coffee-dark); /* Dark text on orange background */
             --accent-secondary: var(--color-mustard);
@@ -85,6 +87,16 @@
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-padding-top: 100px;
+        }
+
+        @media (max-width: 768px) {
+            html {
+                scroll-padding-top: 85px;
+            }
         }
 
         body {
@@ -171,53 +183,75 @@
 
         /* Navigation Header */
         header.nav-header {
-            position: sticky;
-            top: 0;
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 1rem;
             z-index: 1000;
+            width: max-content;
+            max-width: min(95vw, 1050px);
             background-color: var(--nav-bg);
-            border-bottom: var(--border-width-thick) solid var(--border-color);
-            transition: background-color 0.25s ease, border-color 0.25s ease;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 0; /* Square shape */
+            box-shadow: 4px 4px 0px 0px var(--border-color);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        opacity 0.4s ease, 
+                        background-color 0.3s ease, 
+                        border-color 0.3s ease, 
+                        box-shadow 0.3s ease;
+        }
+
+        /* Top vs Scroll states */
+        header.nav-header.nav-at-top {
+            background-color: var(--nav-bg-rgba);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 2px 2px 0px 0px var(--border-color);
+        }
+
+        header.nav-header.nav-hidden {
+            transform: translate(-50%, -150%) scale(0.95);
+            opacity: 0;
         }
 
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
         }
 
         .logo {
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 800;
-            font-size: 1.4rem;
+            font-size: 1.15rem;
             color: var(--color-coffee-dark);
             text-decoration: none;
-            border: var(--border-width) solid var(--color-coffee-dark);
-            padding: 0.25rem 0.75rem;
+            border: var(--border-width) solid var(--border-color);
+            padding: 0.2rem 0.5rem;
             background-color: var(--accent-secondary);
-            box-shadow: 4px 4px 0px 0px var(--color-coffee-dark);
-            border-radius: var(--radius);
+            box-shadow: 2px 2px 0px 0px var(--border-color);
+            border-radius: 0; /* Square shape */
             transition: transform 0.1s ease, box-shadow 0.1s ease;
         }
 
         .logo:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px 0px var(--color-coffee-dark);
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px 0px var(--border-color);
         }
 
         .logo:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px 0px var(--color-coffee-dark);
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px 0px var(--border-color);
         }
 
         .nav-links {
             display: flex;
-            gap: 1rem;
+            gap: 0.4rem;
             align-items: center;
             margin-left: auto;
-            margin-right: 1.5rem;
+            margin-right: 0.25rem;
         }
 
         .nav-link {
@@ -225,23 +259,24 @@
             font-weight: 700;
             color: var(--foreground);
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: 0.3rem 0.55rem;
+            font-size: 0.9rem;
             border: 2px solid transparent;
-            border-radius: var(--radius);
+            border-radius: 0; /* Square shape */
             transition: all 0.15s ease;
         }
 
         .nav-link:hover {
             border-color: var(--border-color);
             background-color: var(--accent-secondary);
-            box-shadow: 4px 4px 0px 0px var(--border-color);
-            transform: translate(-3px, -3px);
+            box-shadow: 2px 2px 0px 0px var(--border-color);
+            transform: translate(-2px, -2px);
             color: var(--color-coffee-dark);
         }
 
         .nav-link:active {
             transform: translate(1px, 1px);
-            box-shadow: 2px 2px 0px 0px var(--border-color);
+            box-shadow: 1px 1px 0px 0px var(--border-color);
         }
 
         .mobile-menu-btn {
@@ -273,32 +308,37 @@
 
         /* Theme Toggle Button */
         .theme-toggle-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1001;
+            width: 3.5rem;
+            height: 3.5rem;
             background-color: var(--accent-secondary);
             color: var(--color-coffee-dark);
             border: var(--border-width) solid var(--border-color);
-            box-shadow: 3px 3px 0px 0px var(--border-color);
-            border-radius: var(--radius);
-            padding: 0.5rem;
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px 0px var(--border-color);
+            border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s;
         }
 
         .theme-toggle-btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 5px 5px 0px 0px var(--border-color);
+            transform: translate(-3px, -3px);
+            box-shadow: calc(var(--shadow-offset) + 3px) calc(var(--shadow-offset) + 3px) 0px 0px var(--border-color);
         }
 
         .theme-toggle-btn:active {
-            transform: translate(1px, 1px);
+            transform: translate(2px, 2px);
             box-shadow: 2px 2px 0px 0px var(--border-color);
         }
 
         .theme-toggle-btn svg {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             fill: var(--color-coffee-dark);
             transition: transform 0.3s ease;
         }
@@ -318,7 +358,7 @@
         .section-hero {
             position: relative;
             overflow: hidden;
-            min-height: calc(100vh - 80px);
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1319,22 +1359,24 @@
             }
 
             .nav-container {
-                padding: 1rem 1.25rem;
+                padding: 0.5rem 1rem 0.5rem 1rem;
             }
 
             .nav-links {
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 100%;
+                top: calc(100% + 0.75rem);
                 left: 0;
                 right: 0;
                 background-color: var(--nav-bg);
-                border-bottom: var(--border-width-thick) solid var(--border-color);
+                border: var(--border-width) solid var(--border-color);
+                border-radius: 0; /* Square mobile drawer */
                 padding: 1.5rem;
                 gap: 1.25rem;
-                box-shadow: 0px 10px 0px 0px rgba(44, 24, 16, 0.15);
+                box-shadow: 6px 6px 0px 0px var(--border-color);
                 margin: 0;
+                z-index: 999;
             }
 
             .nav-links.active {
@@ -1343,9 +1385,61 @@
 
             .mobile-menu-btn {
                 display: block;
+                border-radius: 0; /* Square button */
+                box-shadow: 2px 2px 0px 0px var(--border-color);
+            }
+
+            header.nav-header {
+                left: 1rem;
+                right: 1rem;
+                top: 1rem;
+                width: auto;
+                min-width: 0;
+                max-width: none;
+                transform: none;
+                border: var(--border-width) solid var(--border-color);
+                border-radius: 0; /* Square mobile navbar */
+                box-shadow: 4px 4px 0px 0px var(--border-color);
+                transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                            opacity 0.35s ease, 
+                            background-color 0.25s ease;
+            }
+
+            header.nav-header.nav-at-top {
+                background-color: var(--nav-bg-rgba);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                box-shadow: 2px 2px 0px 0px var(--border-color);
+            }
+
+            header.nav-header.nav-hidden {
+                transform: translateY(-150%);
+                opacity: 0;
+            }
+
+            .theme-toggle-btn {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 3rem;
+                height: 3rem;
+                border-width: 2.5px;
+                box-shadow: 4px 4px 0px 0px var(--border-color);
+            }
+            .theme-toggle-btn:hover {
+                transform: translate(-2px, -2px);
+                box-shadow: 6px 6px 0px 0px var(--border-color);
+            }
+            .theme-toggle-btn:active {
+                transform: translate(1px, 1px);
+                box-shadow: 2px 2px 0px 0px var(--border-color);
             }
 
             /* Hero Layout on Mobile */
+            .section-hero {
+                padding-top: calc(4rem + 72px);
+                min-height: 100vh;
+            }
+
             .hero-content {
                 padding: 0 1.25rem;
             }
@@ -1441,12 +1535,14 @@
                 gap: 1rem;
             }
         }
+
+        /* Auto-hide navigation scroll animations configured globally and in mobile query */
     </style>
 </head>
 <body>
 
     <!-- Header Navigation -->
-    <header class="nav-header">
+    <header class="nav-header nav-at-top">
         <div class="nav-container">
             <a href="#" class="logo">tamjidhossen.me</a>
             <nav class="nav-links">
@@ -1460,12 +1556,6 @@
                 <a href="#contact" class="nav-link">Connect</a>
             </nav>
             <div style="display: flex; gap: 1rem; align-items: center;">
-                <button class="theme-toggle-btn" aria-label="Toggle Dark Mode">
-                    <!-- Sun Icon (visible in dark mode) -->
-                    <svg class="sun-icon" viewBox="0 0 24 24"><path d="M12,9A3,3 0 1,1 9,12A3,3 0 0,1 12,9M12,2A1,1 0 0,1 13,3V5A1,1 0 0,1 11,5V3A1,1 0 0,1 12,2M12,19A1,1 0 0,1 13,20V22A1,1 0 0,1 11,22V20A1,1 0 0,1 12,19M22,12A1,1 0 0,1 21,13H19A1,1 0 0,1 19,11H21A1,1 0 0,1 22,12M5,12A1,1 0 0,1 4,13H2A1,1 0 0,1 2,11H4A1,1 0 0,1 5,12M19.07,4.93A1,1 0 0,1 19.07,6.34L17.66,7.76A1,1 0 1,1 16.24,6.34L17.66,4.93A1,1 0 0,1 19.07,4.93M7.76,16.24A1,1 0 0,1 7.76,17.66L6.34,19.07A1,1 0 1,1 4.93,17.66L6.34,16.24A1,1 0 0,1 7.76,16.24M19.07,19.07A1,1 0 0,1 17.66,19.07L16.24,17.66A1,1 0 0,1 17.66,16.24L19.07,17.66A1,1 0 0,1 19.07,19.07M7.76,7.76A1,1 0 0,1 6.34,7.76L4.93,6.34A1,1 0 0,1 6.34,4.93L7.76,6.34A1,1 0 0,1 7.76,7.76Z"/></svg>
-                    <!-- Moon Icon (visible in light mode) -->
-                    <svg class="moon-icon" viewBox="0 0 24 24"><path d="M12.1,22c-4.9,0-9-3.7-9.5-8.7C2.1,8,6.2,3.1,11.9,2.1c0.7-0.1,1.3,0.3,1.4,1c0.1,0.7-0.3,1.3-1,1.4c-4.1,0.7-7,4.3-6.6,8.5c0.4,3.7,3.5,6.6,7.2,6.6c2.8,0,5.4-1.6,6.6-4.2c0.3-0.6,1-0.9,1.6-0.6c0.6,0.3,0.9,1,0.6,1.6C19.9,19.7,16.2,22,12.1,22z"/></svg>
-                </button>
                 <button class="mobile-menu-btn" aria-label="Toggle Menu">
                     <svg viewBox="0 0 24 24">
                         <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
@@ -1988,9 +2078,20 @@
         <p>&copy; 2026 Md Tamjid Hossen. Built with passion and coffee</p>
     </footer>
 
+    <!-- Floating Theme Toggle Button -->
+    <button class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+        <!-- Sun Icon (visible in dark mode) -->
+        <svg class="sun-icon" viewBox="0 0 24 24"><path d="M12,9A3,3 0 1,1 9,12A3,3 0 0,1 12,9M12,2A1,1 0 0,1 13,3V5A1,1 0 0,1 11,5V3A1,1 0 0,1 12,2M12,19A1,1 0 0,1 13,20V22A1,1 0 0,1 11,22V20A1,1 0 0,1 12,19M22,12A1,1 0 0,1 21,13H19A1,1 0 0,1 19,11H21A1,1 0 0,1 22,12M5,12A1,1 0 0,1 4,13H2A1,1 0 0,1 2,11H4A1,1 0 0,1 5,12M19.07,4.93A1,1 0 0,1 19.07,6.34L17.66,7.76A1,1 0 1,1 16.24,6.34L17.66,4.93A1,1 0 0,1 19.07,4.93M7.76,16.24A1,1 0 0,1 7.76,17.66L6.34,19.07A1,1 0 1,1 4.93,17.66L6.34,16.24A1,1 0 0,1 7.76,16.24M19.07,19.07A1,1 0 0,1 17.66,19.07L16.24,17.66A1,1 0 0,1 17.66,16.24L19.07,17.66A1,1 0 0,1 19.07,19.07M7.76,7.76A1,1 0 0,1 6.34,7.76L4.93,6.34A1,1 0 0,1 6.34,4.93L7.76,6.34A1,1 0 0,1 7.76,7.76Z"/></svg>
+        <!-- Moon Icon (visible in light mode) -->
+        <svg class="moon-icon" viewBox="0 0 24 24"><path d="M12.1,22c-4.9,0-9-3.7-9.5-8.7C2.1,8,6.2,3.1,11.9,2.1c0.7-0.1,1.3,0.3,1.4,1c0.1,0.7-0.3,1.3-1,1.4c-4.1,0.7-7,4.3-6.6,8.5c0.4,3.7,3.5,6.6,7.2,6.6c2.8,0,5.4-1.6,6.6-4.2c0.3-0.6,1-0.9,1.6-0.6c0.6,0.3,0.9,1,0.6,1.6C19.9,19.7,16.2,22,12.1,22z"/></svg>
+    </button>
+
     <!-- Parallax and Interactive Scripts -->
     <script>
-        // Parallax Effect
+        // Header Navigation scroll behaviors
+        let lastScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+
+        // Parallax and Scroll Handling
         window.addEventListener('scroll', () => {
             // Retrieve scroll offset safely
             const scrolled = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
@@ -2016,6 +2117,30 @@
                 heroContent.style.transform = `translateY(${scrolled * 0.12}px)`;
                 heroContent.style.opacity = `${Math.max(0, 1 - scrolled / 650)}`;
             }
+
+            // Header Floating States & Auto-Hide
+            const header = document.querySelector('header.nav-header');
+            const navLinks = document.querySelector('.nav-links');
+            if (header) {
+                const isMenuOpen = navLinks && navLinks.classList.contains('active');
+                
+                if (scrolled < 50) {
+                    header.classList.remove('nav-hidden');
+                    header.classList.add('nav-at-top');
+                } else {
+                    header.classList.remove('nav-at-top');
+                    
+                    // Do not hide navbar if mobile menu is open
+                    if (!isMenuOpen) {
+                        if (scrolled > lastScrollY) {
+                            header.classList.add('nav-hidden');
+                        } else if (scrolled < lastScrollY) {
+                            header.classList.remove('nav-hidden');
+                        }
+                    }
+                }
+            }
+            lastScrollY = scrolled;
         });
 
         // Theme Toggle Logic
